@@ -103,7 +103,7 @@ namespace dupes
             // 
             this.changePathButton.Location = new System.Drawing.Point(703, 37);
             this.changePathButton.Name = "changePathButton";
-            this.changePathButton.Size = new System.Drawing.Size(75, 23);
+            this.changePathButton.Size = new System.Drawing.Size(73, 23);
             this.changePathButton.TabIndex = 2;
             this.changePathButton.Text = "Change";
             this.changePathButton.UseVisualStyleBackColor = true;
@@ -121,6 +121,9 @@ namespace dupes
             // 
             // treeView1
             // 
+            this.treeView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.treeView1.Location = new System.Drawing.Point(25, 105);
             this.treeView1.Name = "treeView1";
             treeNode1.ContextMenuStrip = this.contextMenuStrip1;
@@ -151,7 +154,7 @@ namespace dupes
             // 
             // deleteButton
             // 
-            this.deleteButton.Location = new System.Drawing.Point(678, 78);
+            this.deleteButton.Location = new System.Drawing.Point(703, 78);
             this.deleteButton.Name = "deleteButton";
             this.deleteButton.Size = new System.Drawing.Size(73, 20);
             this.deleteButton.TabIndex = 7;
@@ -161,7 +164,7 @@ namespace dupes
             // 
             // deleteDupesInFolder
             // 
-            this.deleteDupesInFolder.Location = new System.Drawing.Point(757, 79);
+            this.deleteDupesInFolder.Location = new System.Drawing.Point(794, 79);
             this.deleteDupesInFolder.Name = "deleteDupesInFolder";
             this.deleteDupesInFolder.Size = new System.Drawing.Size(128, 20);
             this.deleteDupesInFolder.TabIndex = 8;
@@ -183,7 +186,7 @@ namespace dupes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(934, 393);
+            this.ClientSize = new System.Drawing.Size(948, 382);
             this.Controls.Add(this.includeDlls);
             this.Controls.Add(this.deleteDupesInFolder);
             this.Controls.Add(this.deleteButton);
