@@ -2,7 +2,7 @@
 
 namespace dupes
 {
-    partial class Form1
+    partial class dupesForm
     {
         /// <summary>
         /// Required designer variable.
@@ -31,7 +31,7 @@ namespace dupes
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Root");
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Root");
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,13 +39,13 @@ namespace dupes
             this.baseDirectory = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.changePathButton = new System.Windows.Forms.Button();
+            this.findDupes = new System.Windows.Forms.Button();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.label3 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.deleteButton = new System.Windows.Forms.Button();
+            this.deleteDupesInFolder = new System.Windows.Forms.Button();
             this.includeDlls = new System.Windows.Forms.CheckBox();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -99,36 +99,36 @@ namespace dupes
             this.label2.TabIndex = 1;
             this.label2.Text = "files";
             // 
-            // button1
+            // changePathButton
             // 
-            this.button1.Location = new System.Drawing.Point(738, 36);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Change";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.changePathButton.Location = new System.Drawing.Point(703, 37);
+            this.changePathButton.Name = "changePathButton";
+            this.changePathButton.Size = new System.Drawing.Size(75, 23);
+            this.changePathButton.TabIndex = 2;
+            this.changePathButton.Text = "Change";
+            this.changePathButton.UseVisualStyleBackColor = true;
+            this.changePathButton.Click += new System.EventHandler(this.choosePath_Click);
             // 
-            // button2
+            // findDupes
             // 
-            this.button2.Location = new System.Drawing.Point(25, 76);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "find dupes";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.findDupes.Location = new System.Drawing.Point(25, 76);
+            this.findDupes.Name = "findDupes";
+            this.findDupes.Size = new System.Drawing.Size(75, 23);
+            this.findDupes.TabIndex = 3;
+            this.findDupes.Text = "find dupes";
+            this.findDupes.UseVisualStyleBackColor = true;
+            this.findDupes.Click += new System.EventHandler(this.findDupes_Click);
             // 
             // treeView1
             // 
             this.treeView1.Location = new System.Drawing.Point(25, 105);
             this.treeView1.Name = "treeView1";
-            treeNode2.ContextMenuStrip = this.contextMenuStrip1;
-            treeNode2.Name = "Root";
-            treeNode2.Tag = "root";
-            treeNode2.Text = "Root";
+            treeNode1.ContextMenuStrip = this.contextMenuStrip1;
+            treeNode1.Name = "Root";
+            treeNode1.Tag = "root";
+            treeNode1.Text = "Root";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode2});
+            treeNode1});
             this.treeView1.Size = new System.Drawing.Size(897, 262);
             this.treeView1.TabIndex = 4;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
@@ -149,25 +149,25 @@ namespace dupes
             this.label3.Text = "status";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
-            // button3
+            // deleteButton
             // 
-            this.button3.Location = new System.Drawing.Point(678, 78);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(73, 20);
-            this.button3.TabIndex = 7;
-            this.button3.Text = "delete";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.deleteButton.Location = new System.Drawing.Point(678, 78);
+            this.deleteButton.Name = "deleteButton";
+            this.deleteButton.Size = new System.Drawing.Size(73, 20);
+            this.deleteButton.TabIndex = 7;
+            this.deleteButton.Text = "delete";
+            this.deleteButton.UseVisualStyleBackColor = true;
+            this.deleteButton.Click += new System.EventHandler(this.delete_Click);
             // 
-            // button4
+            // deleteDupesInFolder
             // 
-            this.button4.Location = new System.Drawing.Point(757, 79);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(128, 20);
-            this.button4.TabIndex = 8;
-            this.button4.Text = "delete dupes in folder";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.deleteDupesInFolder.Location = new System.Drawing.Point(757, 79);
+            this.deleteDupesInFolder.Name = "deleteDupesInFolder";
+            this.deleteDupesInFolder.Size = new System.Drawing.Size(128, 20);
+            this.deleteDupesInFolder.TabIndex = 8;
+            this.deleteDupesInFolder.Text = "delete dupes in folder";
+            this.deleteDupesInFolder.UseVisualStyleBackColor = true;
+            this.deleteDupesInFolder.Click += new System.EventHandler(this.deleteDupesFromThisFolder_Click);
             // 
             // includeDlls
             // 
@@ -179,21 +179,21 @@ namespace dupes
             this.includeDlls.Text = "include dlls and nupkg";
             this.includeDlls.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // dupesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(934, 393);
             this.Controls.Add(this.includeDlls);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.deleteDupesInFolder);
+            this.Controls.Add(this.deleteButton);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.treeView1);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.findDupes);
+            this.Controls.Add(this.changePathButton);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.baseDirectory);
-            this.Name = "Form1";
+            this.Name = "dupesForm";
             this.Text = "Dupes";
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -207,16 +207,16 @@ namespace dupes
         private System.Windows.Forms.TextBox baseDirectory;
         private System.Windows.Forms.Label label1;
         private Label label2;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button changePathButton;
+        private System.Windows.Forms.Button findDupes;
         private System.Windows.Forms.TreeView treeView1;
         private System.Windows.Forms.Timer timer1;
         private Label label3;
         private ContextMenuStrip contextMenuStrip1;
         private ToolStripMenuItem toolStripMenuItem1;
         private ToolStripMenuItem deleteToolStripMenuItem;
-        private Button button3;
-        private Button button4;
+        private Button deleteButton;
+        private Button deleteDupesInFolder;
         private CheckBox includeDlls;
     }
 }

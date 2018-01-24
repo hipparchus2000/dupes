@@ -15,7 +15,7 @@ namespace dupes
 {
     
 
-    public partial class Form1 : Form
+    public partial class dupesForm : Form
     {
         public class myEntry
         {
@@ -46,7 +46,7 @@ namespace dupes
         private List<dupe> dupeList;
         private bool includeDllsInResults;
 
-        public Form1()
+        public dupesForm()
         {
             InitializeComponent();
             enableDisplay = false;
@@ -54,7 +54,7 @@ namespace dupes
             list = new List<myEntry>();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void choosePath_Click(object sender, EventArgs e)
         {
             folderBrowserDialog1.RootFolder = new Environment.SpecialFolder();
             folderBrowserDialog1.ShowDialog();
@@ -83,7 +83,7 @@ namespace dupes
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void findDupes_Click(object sender, EventArgs e)
         {
             treeView1.Nodes.Clear();
 
@@ -166,7 +166,16 @@ namespace dupes
         private void shaFile(FileInfo fi)
         {
             var filePath = fi.FullName;
-            if (includeDllsInResults == false && ( filePath.Contains(".dll") || filePath.Contains(".nupkg")) )
+            if (includeDllsInResults == false && ( 
+                    filePath.Contains(".dll") 
+                    || filePath.Contains(".nupkg")
+                    || filePath.Contains(".pdb")
+                    || filePath.Contains(".xml")
+                    || filePath.Contains(".mdf")
+                    || filePath.Contains(".ldf")
+                    || filePath.Contains(".js")
+                    || filePath.Contains(".ts_")
+                    ))
                 return;
             var sha = GetChecksum(filePath);
             var size = fi.Length;
@@ -199,6 +208,7 @@ namespace dupes
 
         }
 
+        //not currently used - would need to be added to the Node
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var hitTest = treeView1.HitTest(treeView1.PointToClient(new Point(contextMenuStrip1.Left, contextMenuStrip1.Top)));
@@ -224,7 +234,7 @@ namespace dupes
 
         }
         
-        private void button3_Click(object sender, EventArgs e)
+        private void delete_Click(object sender, EventArgs e)
         {
             if (treeView1.SelectedNode.Level == 0)
                 return;
@@ -242,7 +252,7 @@ namespace dupes
             
         }
 
-        private void button4_Click(object sender, EventArgs e)
+        private void deleteDupesFromThisFolder_Click(object sender, EventArgs e)
         {
             if (treeView1.SelectedNode.Level == 0)
                 return;
@@ -254,13 +264,18 @@ namespace dupes
 
                 foreach (TreeNode shaNode in treeView1.Nodes)
                 {
+                    var fileNodesToRemove = new List<TreeNode>();
                     foreach (TreeNode fileNode in shaNode.Nodes)
                     {
                         if (fileNode.Text.Contains(folderName))
                         {
                             File.Delete(fileNode.Text);
-                            fileNode.Remove();
+                            fileNodesToRemove.Add(fileNode);
                         }
+                    }
+                    foreach (TreeNode fileNodeToRemove in fileNodesToRemove)
+                    {
+                        shaNode.Nodes.Remove(fileNodeToRemove);
                     }
                 }
                 var shaNodesToRemove = new List<TreeNode>();
