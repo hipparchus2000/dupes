@@ -44,6 +44,7 @@ namespace dupes
         long myCount = 0;
         private bool enableDisplay;
         private List<dupe> dupeList;
+        private bool includeDllsInResults;
 
         public Form1()
         {
@@ -92,6 +93,8 @@ namespace dupes
                 Thread.CurrentThread.IsBackground = true;
                 myCount = 0;
                 list = new List<myEntry>();
+                includeDllsInResults = includeDlls.Checked;
+
                 WalkDirectoryTree(di, countFile);
                 WalkDirectoryTree(di, shaFile);
                 //group the files by sha into dupeList
@@ -163,6 +166,8 @@ namespace dupes
         private void shaFile(FileInfo fi)
         {
             var filePath = fi.FullName;
+            if (includeDllsInResults == false && ( filePath.Contains(".dll") || filePath.Contains(".nupkg")) )
+                return;
             var sha = GetChecksum(filePath);
             var size = fi.Length;
             list.Add(new myEntry( filePath , sha, size ));
@@ -203,6 +208,7 @@ namespace dupes
                 if (dialogResult == DialogResult.Yes)
                 {
                     File.Delete(hitTest.Node.Text);
+                    hitTest.Node.Remove();
                 }
             }
 
@@ -220,13 +226,55 @@ namespace dupes
         
         private void button3_Click(object sender, EventArgs e)
         {
+            if (treeView1.SelectedNode.Level == 0)
+                return;
             DialogResult dialogResult = MessageBox.Show("Delete", treeView1.SelectedNode.Text, MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 File.Delete(treeView1.SelectedNode.Text);
+                var parent = treeView1.SelectedNode.Parent;
+                treeView1.SelectedNode.Remove();
+                if (parent.Nodes.Count < 2)
+                    parent.Remove();
+
             }
 
             
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            if (treeView1.SelectedNode.Level == 0)
+                return;
+            var folderName = Path.GetDirectoryName(treeView1.SelectedNode.Text)+"\\";
+
+            DialogResult dialogResult = MessageBox.Show("Delete all dupes from this folder name?", folderName, MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+
+                foreach (TreeNode shaNode in treeView1.Nodes)
+                {
+                    foreach (TreeNode fileNode in shaNode.Nodes)
+                    {
+                        if (fileNode.Text.Contains(folderName))
+                        {
+                            File.Delete(fileNode.Text);
+                            fileNode.Remove();
+                        }
+                    }
+                }
+                var shaNodesToRemove = new List<TreeNode>();
+                foreach (TreeNode shaNode in treeView1.Nodes)
+                {
+                       if (shaNode.Nodes.Count < 2)
+                            shaNodesToRemove.Add(shaNode);                   
+                }
+                foreach(TreeNode shaNode in shaNodesToRemove)
+                {
+                    treeView1.Nodes.Remove(shaNode);
+                }
+
+            }
         }
     }
 
